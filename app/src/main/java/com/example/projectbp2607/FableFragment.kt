@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,8 +36,33 @@ class FableFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fable, container, false)
-    }
+        val view = inflater.inflate(R.layout.fragment_fable, container, false)
+
+
+        val rvBuku: RecyclerView = view.findViewById(R.id.recyclerViewFable)
+
+        rvBuku.layoutManager = LinearLayoutManager(requireContext())
+        //list data buku
+        val data = ArrayList<FableModel>()
+        data.add(FableModel(R.drawable.kelelawar, "Emi's Beach Adventure",
+                "Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet"))
+        data.add(FableModel(R.drawable.kucing, "Ade's Adventure",
+                "Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet"))
+        data.add(FableModel(R.drawable.sapi, "Mermaid To Rescue",
+                "Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet"))
+        data.add(FableModel(R.drawable.ayam, "Emi's Beach Adventure",
+                "Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet"))
+        data.add(FableModel(R.drawable.beruang, "Ade's Adventure",
+                "Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet"))
+        data.add(FableModel(R.drawable.jerapah, "Mermaid To Rescue",
+                "Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet"))
+        //set adapter
+        val adapter = AdapterFable(data)
+        //set adapter ke recycler view
+        rvBuku.adapter = adapter
+
+        return view
+        }
 
     companion object {
         /**
